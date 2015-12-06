@@ -1,0 +1,6 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<p><strong><f:translate key="LLL:EXT:c1_fsc_image/Resources/Private/Language/TCA.xlf:c1_fsc_image" htmlEscape="false" /></strong></p>
+<v:variable.set name="falImages" value="{v:resource.record.fal(uid: '{uid}', field: 'assets', table: 'tt_content')}"/>
+<img src="{f:uri.image(src:'{falImages.0.url}', width: 200m)}" alt="alt" />
+

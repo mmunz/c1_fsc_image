@@ -1,0 +1,26 @@
+lib.fluidContent {
+  templateRootPaths.c1_c1_fsc_image = EXT:c1_fsc_image/Resources/Private/Templates/
+  partialRootPaths.c1_fsc_image = EXT:c1_fsc_image/Resources/Private/Partials/
+  layoutRootPaths.c1_fsc_image = EXT:c1_fsc_image/Resources/Private/Layouts/
+}
+
+tt_content {
+    c1_fsc_image < lib.fluidContent
+    c1_fsc_image {
+        templateName = Content/ResponsiveImage
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10 {
+                references.fieldName = assets
+            }
+            20 = TYPO3\CMS\Frontend\DataProcessing\GalleryProcessor
+			20 {
+				maxGalleryWidth = {$styles.content.textmedia.maxW}
+				maxGalleryWidthInText = {$styles.content.textmedia.maxWInText}
+#				columnSpacing = {$styles.content.textmedia.columnSpacing}
+#				borderWidth = {$styles.content.textmedia.borderWidth}
+#				borderPadding = {$styles.content.textmedia.borderPadding}
+			}
+        }
+    }
+}

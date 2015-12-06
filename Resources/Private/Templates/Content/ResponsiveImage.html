@@ -1,0 +1,48 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="ContentFooter" />
+
+<f:section name="content">
+    <v:variable.set name="img" value="{gallery.rows.1.columns.1}" />
+    <f:if condition="{img.media}">
+        <f:render section="imageType" arguments="{_all}" />
+    </f:if>
+</f:section>
+
+<f:section name="imageType">
+    <f:media
+		file="{img.media}"
+		width="{img.dimensions.width}"
+		height="{img.dimensions.height}"
+        alt="fooo"
+		title="{img.media.title}"
+	/>
+  
+</f:section>
+
+<f:section name="videoType">
+    <f:if condition="{media.extension} == 'youtube">
+        <f:render section="videoYouTube" arguments="{_all}" />
+    </f:if>
+    
+	<f:render section="media" arguments="{_all}" />
+</f:section>
+
+
+<f:section name="videoYouTube">
+    
+</f:section>
+
+
+<f:section name="media">
+	<f:media
+		file="{media}"
+		width="{media.width}"
+		height="{media.height}"
+		alt="{media.alternative}"
+		title="{media.title}"
+	/>
+</f:section>
+
+
+</html>

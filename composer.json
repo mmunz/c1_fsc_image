@@ -1,0 +1,19 @@
+{
+    "name": "c1-fsc-image",
+    "type": "typo3-cms-extension",
+    "version": "0.0.1",
+    "description": "A single responsive image element.",
+    "keywords": [
+        "typo3",
+        "TYPO3 CMS"
+    ],
+    "homepage": "",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Manuel Munz",
+            "email": "t3@comuno.net",
+            "role": "Developer"
+        }
+    ]
+}
