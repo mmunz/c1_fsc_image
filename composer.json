@@ -15,5 +15,11 @@
             "email": "t3@comuno.net",
             "role": "Developer"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "C1\\C1FceImage\\": "Classes/"
+        }
+    }
+
 }
