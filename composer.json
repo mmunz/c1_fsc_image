@@ -18,7 +18,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "C1\\C1FceImage\\": "Classes/"
+            "C1\\C1FscImage\\": "Classes/"
         }
     }
 
