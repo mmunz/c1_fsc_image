@@ -1,11 +1,15 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
 
 <p><strong><f:translate key="LLL:EXT:c1_fsc_image/Resources/Private/Language/TCA.xlf:c1_fsc_image" htmlEscape="false" /></strong></p>
-<v:variable.set name="falImages" value="{v:resource.record.fal(uid: '{uid}', field: 'assets', table: 'tt_content')}"/>
-<f:image
-		src="{falImages.0.url}"
-        crop="{falImages.0.crop}"
-		width="200m"
-        alt="Preview image"
-/>
+<v:variable.set name="falImages" value="{v:resource.record.fal(uid: uid, field: 'assets', table: 'tt_content')}"/>
+<f:for each="{falImages}" as="img" iteration='i'>
+    <f:image
+            src="{img.url}"
+            crop="{img.crop}"
+            width="{settings.preview.width}c"
+            height="{settings.preview.height}c"
+            alt="{img.id}"
+    />
+</f:for>
+
 

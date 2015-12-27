@@ -1,48 +1,100 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:layout name="ContentFooter" />
+    <f:layout name="ContentFooter" />
 
-<f:section name="content">
-    <v:variable.set name="img" value="{gallery.rows.1.columns.1}" />
-    <f:if condition="{img.media}">
-        <f:render section="imageType" arguments="{_all}" />
-    </f:if>
-</f:section>
+    <f:section name="content">
+        <f:debug>{_all}</f:debug>
+        <f:switch expression="{data.imagecols}">
+            <f:case value="2"><v:variable.set name="colClass" value="col-sm-6" /></f:case>
+            <f:case value="3"><v:variable.set name="colClass" value="col-sm-4" /></f:case>
+            <f:case value="4"><v:variable.set name="colClass" value="col-sm-3" /></f:case>
+            <f:case value="6"><v:variable.set name="colClass" value="col-sm-2" /></f:case>
+            <f:case default="TRUE"><v:variable.set name="colClass" value="col-sm-12" /></f:case>
+        </f:switch>
+        <v:variable.set name="vw" value="{v:math.division(a: 100, fail: 100, b: data.imagecols)}" />
+        <f:for each="{gallery.rows}" as="row">
+            <div class="row">
+                <f:for each="{row.columns}" as="column">
+                    <f:if condition="{column.media}">
+                        <div class="{colClass}">
+                            <f:if condition="{column.media.description}">
+                                <f:then>
+                                    <figure>
+                                </f:then>
+                                <f:else>
+                                    <div class="ce-media">
+                                </f:else>
+                            </f:if>
+                            <f:alias map="{img: column}">
+                                <f:render section="imageType" arguments="{_all}" />
+                            </f:alias>
+                            <f:if condition="{column.media.description}">
+                                <f:then>
+                                    <figcaption>
+                                        {column.media.description}
+                                    </figcaption>
+                                    </figure>
+                                </f:then>
+                                <f:else>
+                                    </div>
+                                </f:else>
+                            </f:if>
+                        </div>
+                    </f:if>
+                </f:for>
+            </div>
+        </f:for>
+    </f:section>
 
-<f:section name="imageType">
-    <f:media
-		file="{img.media}"
-		width="{img.dimensions.width}"
-		height="{img.dimensions.height}"
-        alt="fooo"
-		title="{img.media.title}"
-	/>
-  
-</f:section>
+    <f:section name="imageType">
+        <f:comment>
+        <f:if condition="{data.image_format}">
+            <f:then>
+                
+                <f:switch expression="{data.image_format}">
+                    <f:case value="1"><v:variable.set name="height" value="{v:math.division(a: img.dimensions.width, fail: image.dimensions.height, b: 1.7777)->v:math.round(decimals:'0')}" /></f:case>
+                    <f:case value="2"><v:variable.set name="height" value="{v:math.division(a: img.dimensions.width, fail: image.dimensions.height, b: 1.5)->v:math.round(decimals:'0')}" /></f:case>
+                    <f:case value="3"><v:variable.set name="height" value="{img.dimensions.width}" /></f:case>
+                    <f:case default="TRUE"><v:variable.set name="height" value="{image.dimensions.height}" /></f:case>
+                </f:switch>
+            </f:then>
+            <f:else>
+                <v:variable.set name="height" value="{img.dimensions.height}" />
+            </f:else>
+        </f:if>
+        </f:comment>
+        <f:media
+            file="{img.media}"
+            width="{img.dimensions.width}"
+            height="{height}"
+            alt="fooo"
+            title="{img.media.title}"
+            additionalAttributes="{vw: vw, breakpoint: 'sm', image_format: data.image_format}"
+            />
 
-<f:section name="videoType">
-    <f:if condition="{media.extension} == 'youtube">
-        <f:render section="videoYouTube" arguments="{_all}" />
-    </f:if>
-    
-	<f:render section="media" arguments="{_all}" />
-</f:section>
+    </f:section>
+
+    <f:section name="videoType">
+        <f:if condition="{media.extension} == 'youtube">
+            <f:render section="videoYouTube" arguments="{_all}" />
+        </f:if>
+
+        <f:render section="media" arguments="{_all}" />
+    </f:section>
 
 
-<f:section name="videoYouTube">
-    
-</f:section>
+    <f:section name="videoYouTube">
+
+    </f:section>
 
 
-<f:section name="media">
-	<f:media
-		file="{media}"
-		width="{media.width}"
-		height="{media.height}"
-		alt="{media.alternative}"
-		title="{media.title}"
-	/>
-</f:section>
-
-
+    <f:section name="media">
+        <f:media
+            file="{media}"
+            width="{media.width}"
+            height="{media.height}c"
+            alt="{media.alternative}"
+            title="{media.title}"
+            />
+    </f:section>
 </html>

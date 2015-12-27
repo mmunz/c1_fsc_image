@@ -1,3 +1,4 @@
+[GLOBAL]
 lib.fluidContent {
   templateRootPaths.c1_c1_fsc_image = EXT:c1_fsc_image/Resources/Private/Templates/
   partialRootPaths.c1_fsc_image = EXT:c1_fsc_image/Resources/Private/Partials/
@@ -21,6 +22,37 @@ tt_content {
 #				borderWidth = {$styles.content.textmedia.borderWidth}
 #				borderPadding = {$styles.content.textmedia.borderPadding}
 			}
+            30 = C1\C1FscImage\DataProcessing\C1FscImageProcessor
         }
     }
 }
+
+plugin.tx_c1fscimage {
+    settings {
+        image_formats {
+            # 0 is the original image format, we leave that unset 
+            # 16:9
+            1 {
+                ratio = 1.7777778
+            }
+            # 16:10
+            2 {
+                ratio = 1.6
+            }
+            # 4:3
+            3 {
+                ratio = 1.3333333
+            }
+            # 2:1
+            4 {
+                ratio = 2
+            }
+            # 1:1
+            5 {
+                ratio = 1
+            }
+        }
+    }
+}
+
+module.tx_c1fscimage < plugin.tx_c1fscimage
