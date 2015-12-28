@@ -1,7 +1,7 @@
 {
     "name": "c1/c1-fsc-image",
     "type": "typo3-cms-extension",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "A single responsive image element.",
     "keywords": [
         "typo3",
