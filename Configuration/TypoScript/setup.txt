@@ -6,8 +6,8 @@ lib.fluidContent {
 }
 
 tt_content {
-    c1_fsc_image < lib.fluidContent
-    c1_fsc_image {
+    image < lib.fluidContent
+    image {
         templateName = Content/ResponsiveImage
         dataProcessing {
             10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
@@ -22,7 +22,7 @@ tt_content {
 #				borderWidth = {$styles.content.textmedia.borderWidth}
 #				borderPadding = {$styles.content.textmedia.borderPadding}
 			}
-            30 = C1\C1FscImage\DataProcessing\C1FscImageProcessor
+            30 = C1\C1FscImage\DataProcessing\FscImageProcessor
         }
     }
 }

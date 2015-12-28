@@ -4,7 +4,6 @@ namespace C1\C1FscImage\Hooks;
 
 use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use TYPO3\CMS\Backend\View\PageLayoutView;
-use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
@@ -22,7 +21,7 @@ class FscImagePreviewRenderer implements PageLayoutViewDrawItemHookInterface
      */
     
     /**
-     * @return ImageRenderer
+     * @return void
      */
     public function __construct() {
         $this->settings = [];
@@ -38,7 +37,6 @@ class FscImagePreviewRenderer implements PageLayoutViewDrawItemHookInterface
         $configuration = $configurationManager->getTypoScriptSetup();
         $settings = $this->typoScriptService->convertTypoScriptArrayToPlainArray($configuration);
         $this->settings = is_array($settings['plugin']['tx_c1fscimage']['settings']) ? $settings['plugin']['tx_c1fscimage']['settings'] : [];
-
     }
     
     /**
@@ -54,7 +52,7 @@ class FscImagePreviewRenderer implements PageLayoutViewDrawItemHookInterface
     
     public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row)
     {
-        if ($row['CType'] === 'c1_fsc_image') {
+        if ($row['CType'] === 'image') {
             $this->settings['preview']['width'] = 200;
             $this->settings['image_format'] = $row['image_format'];
             if (is_array($this->settings['image_formats'])) {

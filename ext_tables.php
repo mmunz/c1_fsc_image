@@ -17,7 +17,7 @@ $tceformConfig = \TYPO3\CMS\Core\Utility\GeneralUtility::getUrl(\TYPO3\CMS\Core\
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig($tceformConfig);
 
 // register preview processor
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['c1_fsc_image']
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['image']
     = \C1\C1FscImage\Hooks\FscImagePreviewRenderer::class;
 
 ?>

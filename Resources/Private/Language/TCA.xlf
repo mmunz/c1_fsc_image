@@ -7,10 +7,10 @@
                 <source>Images</source>
             </trans-unit>
             <trans-unit id="c1_fsc_image" xml:space="preserve">
-                <source>Image</source>
+                <source>Images</source>
             </trans-unit>
             <trans-unit id="c1_fsc_image_description" xml:space="preserve">
-                <source>Single responsive image.</source>
+                <source>C1 Responsive Image(s)</source>
             </trans-unit>
         </body>
     </file>

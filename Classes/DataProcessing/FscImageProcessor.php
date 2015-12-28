@@ -17,26 +17,49 @@ namespace C1\C1FscImage\DataProcessing;
 
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Service\TypoScriptService;
 
 /**
- * This data processor will calculate rows, columns and dimensions for a gallery
- * based on several settings and can be used for f.i. the CType "hf_images"
+ * Class for data processing for the content element "c1_fsc_image"
  */
-class C1FscImageProcessor implements DataProcessorInterface {
+class FscImageProcessor implements DataProcessorInterface {
+
     /**
-     * Process data for the CType "c1_fsc_image"
+     * @return void
+     */
+    public function __construct() {
+        $this->typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
+        $this->getConfiguration();
+    }
+
+    /**
+     * @return void
+     */
+    protected function getConfiguration() {
+        $configurationManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Configuration\\BackendConfigurationManager');
+        $configuration = $configurationManager->getTypoScriptSetup();
+        $settings = $this->typoScriptService->convertTypoScriptArrayToPlainArray($configuration);
+        $this->settings = is_array($settings['plugin']['tx_c1fscimage']['settings']) ? $settings['plugin']['tx_c1fscimage']['settings'] : [];
+    }
+
+    /**
+     * Process data for the content element "c1_fsc_image"
      *
-     * @param ContentObjectRenderer $cObj The content object renderer, which contains data of the content element
+     * @param ContentObjectRenderer $cObj The data of the content element or page
      * @param array $contentObjectConfiguration The configuration of Content Object
      * @param array $processorConfiguration The configuration of this processor
      * @param array $processedData Key/value store of processed data (e.g. to be passed to a Fluid View)
      * @return array the processed data as key/value store
-     * @throws ContentRenderingException
      */
     public function process(
     ContentObjectRenderer $cObj, array $contentObjectConfiguration, array $processorConfiguration, array $processedData
     ) {
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($processedData);
+        if (is_array($this->settings['image_formats'])) {
+            $image_format = $processedData['data']['image_format'];
+            $processedData['image_ratio'] = $this->settings['image_formats'][$image_format]['ratio'];
+        }
         return $processedData;
     }
+
 }
