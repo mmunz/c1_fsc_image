@@ -1,8 +1,8 @@
 {
     "name": "c1/c1-fsc-image",
     "type": "typo3-cms-extension",
-    "version": "0.0.2",
-    "description": "A single responsive image element.",
+    "version": "0.0.3",
+    "description": "Responsive images. Uses c1_fluid_styled_responsive images to render the images.",
     "keywords": [
         "typo3",
         "TYPO3 CMS"
@@ -12,10 +12,13 @@
     "authors": [
         {
             "name": "Manuel Munz",
-            "email": "t3@comuno.net",
+            "email": "t3dev@comuno.net",
             "role": "Developer"
         }
     ],
+    "require": {
+        "c1/c1-fluid-styled-responsive-images": "*@dev"
+    },
     "autoload": {
         "psr-4": {
             "C1\\C1FscImage\\": "Classes/"
