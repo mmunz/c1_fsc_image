@@ -22,7 +22,6 @@ tt_content {
 #				borderWidth = {$styles.content.textmedia.borderWidth}
 #				borderPadding = {$styles.content.textmedia.borderPadding}
 			}
-            30 = C1\FluidStyledResponsiveImages\DataProcessing\FluidStyledResponsiveImagesProcessor
         }
     }
 }
