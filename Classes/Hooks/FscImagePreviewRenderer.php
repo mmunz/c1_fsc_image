@@ -43,8 +43,8 @@ class FscImagePreviewRenderer implements PageLayoutViewDrawItemHookInterface
      * @return void
      */
     protected function setPreviewHeight() {
-        $image_format = $this->settings['image_format'];
-        $ratio = $this->settings['image_formats'][$image_format]['ratio'];
+        $ratio = $this->settings['image_format'];
+        //$ratio = $this->settings['image_formats'][$image_format]['ratio'];
         if ($ratio && $ratio > 0) {
             $this->settings['preview']['height'] = round($this->settings['preview']['width'] / $ratio); 
         }
@@ -55,11 +55,10 @@ class FscImagePreviewRenderer implements PageLayoutViewDrawItemHookInterface
         if ($row['CType'] === 'image') {
             $this->settings['preview']['width'] = 200;
             $this->settings['image_format'] = $row['image_format'];
-            if (is_array($this->settings['image_formats'])) {
+            if ($this->settings['image_format']) {
                 $this->setPreviewHeight();
             }
             $row['settings'] = $this->settings;
-            
         }
     }
 }

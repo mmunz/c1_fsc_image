@@ -1,8 +1,8 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
     <f:layout name="ContentFooter" />
-
     <f:section name="content">
+            
         <f:if condition="{data.imagecols} < 2">
             <f:then>
                 <f:render section="noRows" arguments="{_all}" />
@@ -64,7 +64,7 @@
             width="{img.dimensions.width}"
             alt="foo"
             title="{img.media.title}"
-            additionalAttributes="{vw: vw, breakpoint: 'sm', image_ratio: image_ratio}"
+            additionalAttributes="{vw: vw, breakpoint: 'sm', image_format: data.image_format}"
             />
     </f:section>
 </html>
