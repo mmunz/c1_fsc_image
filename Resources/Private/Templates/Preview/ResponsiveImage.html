@@ -3,12 +3,12 @@
 <v:variable.set name="falImages" value="{v:resource.record.fal(uid: uid, field: 'assets', table: 'tt_content')}"/>
 <f:for each="{falImages}" as="img" iteration='i'>
     <f:image
-            src="{img.url}"
-            crop="{img.crop}"
-            width="{settings.preview.width}c"
-            height="{settings.preview.height}c"
-            alt="{img.id}"
-    />
+        src="{img.uid}"
+        treatIdAsReference="1"
+        crop="{img.crop}"
+        width="{settings.preview.width}c"
+        height="{settings.preview.height}c"
+        alt="{img.id}"
+        />
 </f:for>
-
 
