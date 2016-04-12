@@ -80,7 +80,6 @@
 
     <f:section name="imageType">
         <v:variable.set name="altText" value="{img.media.alternative->v:or(alternative: img.media.title)->v:or(alternative: img.media.name)}" />
-        <f:debug>{altText}</f:debug>
         <f:switch expression="{img.media.mime_type}">
             <f:case value="image/jpg"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
             <f:case value="image/jpeg"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
