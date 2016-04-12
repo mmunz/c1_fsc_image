@@ -2,7 +2,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
     <f:layout name="ContentFooter" />
     <f:section name="content">
-            
+
         <f:if condition="{data.imagecols} < 2">
             <f:then>
                 <f:render section="noRows" arguments="{_all}" />
@@ -58,7 +58,7 @@
         </figure>
     </f:section>
 
-    <f:section name="imageType">
+    <f:section name="imageTypeCustom">
         <f:media
             file="{img.media}"
             width="{img.dimensions.width}"
@@ -67,4 +67,24 @@
             additionalAttributes="{vw: vw, breakpoint: 'sm', image_format: data.image_format}"
             />
     </f:section>
+    
+    <f:section name="imageTypeDefault">
+        <f:media
+            file="{img.media}"
+            width="{img.dimensions.width}"
+            alt="foo"
+            title="{img.media.title}"
+            class="img-responsive"
+            />
+    </f:section>
+
+    <f:section name="imageType">
+        <f:switch expression="{img.media.mime_type}">
+            <f:case value="image/jpg"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
+            <f:case value="image/jpeg"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
+            <f:case value="image/png"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
+            <f:case value="image/gif"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
+            <f:case default="TRUE"><f:render section="imageTypeDefault" arguments="{_all}" /></f:case>
+        </f:switch>
+</f:section>
 </html>
