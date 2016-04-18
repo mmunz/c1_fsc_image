@@ -2,7 +2,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
     <f:layout name="ContentFooter" />
     <f:section name="content">
-
         <f:if condition="{data.imagecols} < 2">
             <f:then>
                 <f:render section="noRows" arguments="{_all}" />
@@ -64,7 +63,7 @@
             width="{img.dimensions.width}"
             alt="Will be replaced"
             title="{img.media.title}"
-            additionalAttributes="{vw: vw, breakpoint: 'sm', image_format: data.image_format}"
+            additionalConfig="{image_format: data.image_format, respImg:{sm: {vw: vw, image_format: data.image_format} }}"
             />
     </f:section>
     
@@ -80,7 +79,7 @@
 
     <f:section name="imageType">
         <v:variable.set name="altText" value="{img.media.alternative->v:or(alternative: img.media.title)->v:or(alternative: img.media.name)}" />
-        <f:switch expression="{img.media.mime_type}">
+        <f:switch expression="{img.media.mimeType}">
             <f:case value="image/jpg"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
             <f:case value="image/jpeg"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
             <f:case value="image/png"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
