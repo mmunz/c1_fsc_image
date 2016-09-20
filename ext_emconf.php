@@ -12,7 +12,6 @@ $EM_CONF[$_EXTKEY] = array(
 	'constraints' => array(
 		'depends' => array(
 			'core' => '7.5.0-7.6.99',
-			'fluid_styled_content' => '7.5.0-7.6.99',
 			'c1_fluid_styled_responsive_images' => ''
 		),
 	),
