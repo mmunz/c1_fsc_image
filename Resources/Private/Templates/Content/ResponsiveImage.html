@@ -79,12 +79,14 @@
 
     <f:section name="imageType">
         <v:variable.set name="altText" value="{img.media.alternative->v:or(alternative: img.media.title)->v:or(alternative: img.media.name)}" />
-        <f:switch expression="{img.media.mimeType}">
-            <f:case value="image/jpg"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
-            <f:case value="image/jpeg"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
-            <f:case value="image/png"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
-            <f:case value="image/gif"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
-            <f:case default="TRUE"><f:render section="imageTypeDefault" arguments="{_all}" /></f:case>
-        </f:switch>
+        <f:link.typolink parameter="{img.media.link}">
+            <f:switch expression="{img.media.mimeType}">
+                <f:case value="image/jpg"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
+                <f:case value="image/jpeg"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
+                <f:case value="image/png"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
+                <f:case value="image/gif"><f:render section="imageTypeCustom" arguments="{_all}" /></f:case>
+                <f:case default="TRUE"><f:render section="imageTypeDefault" arguments="{_all}" /></f:case>
+            </f:switch>
+        </f:link.typolink>
 </f:section>
 </html>
