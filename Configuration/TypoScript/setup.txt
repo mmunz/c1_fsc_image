@@ -1,8 +1,8 @@
 [GLOBAL]
 lib.fluidContent {
   templateRootPaths.c1_c1_fsc_image = EXT:c1_fsc_image/Resources/Private/Templates/
-  partialRootPaths.c1_fsc_image = EXT:c1_fsc_image/Resources/Private/Partials/
-  layoutRootPaths.c1_fsc_image = EXT:c1_fsc_image/Resources/Private/Layouts/
+#  partialRootPaths.c1_fsc_image = EXT:c1_fsc_image/Resources/Private/Partials/
+#  layoutRootPaths.c1_fsc_image = EXT:c1_fsc_image/Resources/Private/Layouts/
 }
 
 tt_content {
